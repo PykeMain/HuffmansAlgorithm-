@@ -9,15 +9,6 @@ class binaryTree{
         std::size_t occurrence;
         char letter;
 
-        void dealocate(){
-            if(!this){
-                return;
-            }
-
-            left->dealocate();
-            right->dealocate();
-            delete this;
-        }
-
-        
+        void dealocate();
+        void copy(binaryTree* other);
 };
