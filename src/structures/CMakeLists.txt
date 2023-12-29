@@ -9,5 +9,5 @@ target_include_directories(
 target_sources(
     math
     PUBLIC
-    nTree.cpp
+    binaryTree.cpp
 )

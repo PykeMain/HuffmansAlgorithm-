@@ -10,5 +10,11 @@ class binaryTree{
         char letter;
 
         void dealocate();
-        void copy(binaryTree* other);
+        // binaryTree* copy(binaryTree*);
+    
+    public:
+        binaryTree(char, std::size_t, binaryTree*, binaryTree*);
+
+        void increment();
+        char getChar() const;
 };
