@@ -1,3 +1,3 @@
-# add_subdirectory(math)
+add_subdirectory(algorithms)
 add_subdirectory(structures)
 add_subdirectory(app)
