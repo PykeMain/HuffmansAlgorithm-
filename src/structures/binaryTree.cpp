@@ -19,6 +19,10 @@ void binaryTree::increment(){
     ++this->occurrence;
 }
 
+std::size_t binaryTree::getOccurrence() const{
+    return this->occurrence;
+}
+
 char binaryTree::getChar() const{
     return this->letter;
 }

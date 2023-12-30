@@ -5,8 +5,8 @@ add_executable(
 target_link_libraries(
     app
     PUBLIC
-#     math
-#     person
+    algorithms
+    structures
 )
 
 target_sources(

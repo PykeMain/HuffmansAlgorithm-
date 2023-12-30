@@ -1,6 +1,6 @@
 #pragma once
 
-#include <vector>
+#include <cstddef>
 
 class binaryTree{
     private:
@@ -17,4 +17,5 @@ class binaryTree{
 
         void increment();
         char getChar() const;
+        std::size_t getOccurrence() const;
 };

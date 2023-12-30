@@ -1,13 +1,13 @@
-add_library(structures)
+add_library(algorithms)
 
 target_include_directories(
-    structures
+    algorithms
     PUBLIC
     include/
 )
 
 target_sources(
-    structures
+    algorithms
     PUBLIC
-    binaryTree.cpp
+    letterCounter.cpp
 )
