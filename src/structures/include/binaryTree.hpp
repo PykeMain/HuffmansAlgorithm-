@@ -13,7 +13,7 @@ class binaryTree{
         // binaryTree* copy(binaryTree*);
     
     public:
-        binaryTree(char, std::size_t, binaryTree*, binaryTree*);
+        binaryTree(char = '\0', std::size_t = 0, binaryTree* = nullptr, binaryTree* = nullptr);
 
         void increment();
         char getChar() const;
