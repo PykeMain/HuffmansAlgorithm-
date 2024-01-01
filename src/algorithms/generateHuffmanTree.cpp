@@ -24,13 +24,14 @@ binaryTree* createHuffmanTree(std::vector<myPair> occurrenceTable){
         leafs.push(new binaryTree(p.first, p.second));
     }
 
+
     binaryTree *firstT, *secondT;
-    while(leafs.size() != 0 && trees.size() != 1){
+    while(leafs.size() != 0 || trees.size() != 1){
         firstT = pickTree(leafs, trees);
         secondT = pickTree(leafs, trees);
-        if(!secondT && !firstT){
+        if(secondT != nullptr && firstT != nullptr){
             trees.push(new binaryTree('\0', firstT->getOccurrence() + secondT->getOccurrence(), firstT, secondT));
-        }else if(!secondT){
+        }else if(firstT != nullptr){
             trees.push(firstT);
         }
     }

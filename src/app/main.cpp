@@ -12,8 +12,7 @@ int main(){
 
     for(std::size_t j = 0; j < 256; ++j){
         if(lookUpTable[j].second > 0){
-            int i = 0;
-            if(lookUpTable[j].first < (1 << (lookUpTable[j].second - i))){
+            for(std::size_t i = 1; lookUpTable[j].first < (1 << (lookUpTable[j].second - i)) - 1; ++i){
                 std::cout << "0";
             }
             std::cout << lookUpTable[j].first << " \"" << (char) j << "\"" << std::endl; 

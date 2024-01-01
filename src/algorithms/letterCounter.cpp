@@ -13,6 +13,6 @@ std::vector<myPair> letterCounter(std::string input){
             used.push_back(std::make_pair(i, alphabet[i]));
         }
     }
-    std::sort(used.begin(), used.end(), [](myPair a, myPair b){return a.second > b.second;});
+    std::sort(used.begin(), used.end(), [](myPair a, myPair b){return a.second < b.second;});
     return used;
 }
