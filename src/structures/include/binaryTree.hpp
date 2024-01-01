@@ -1,6 +1,12 @@
 #pragma once
 
 #include <cstddef>
+#include <vector>
+#include <string>
+#include <queue>
+#include <algorithm>
+
+typedef std::pair<char,std::size_t> myPair;
 
 class binaryTree{
     private:
@@ -18,4 +24,8 @@ class binaryTree{
         void increment();
         char getChar() const;
         std::size_t getOccurrence() const;
+        bool noChildren() const;
+
+        binaryTree* getLeft();
+        binaryTree* getRight();
 };

@@ -26,3 +26,19 @@ std::size_t binaryTree::getOccurrence() const{
 char binaryTree::getChar() const{
     return this->letter;
 }
+
+
+bool binaryTree::noChildren() const{
+    if(!this->left && !this->right){
+        return true;
+    }
+    return false;
+}
+
+binaryTree* binaryTree::getLeft(){
+    return this->left;
+}
+
+binaryTree* binaryTree::getRight(){
+    return right;
+}
