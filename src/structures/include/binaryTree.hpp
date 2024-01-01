@@ -19,7 +19,9 @@ class binaryTree{
         // binaryTree* copy(binaryTree*);
     
     public:
-        binaryTree(char = '\0', std::size_t = 0, binaryTree* = nullptr, binaryTree* = nullptr);
+        binaryTree(char letter = '\0', std::size_t occurrence = 0, binaryTree* left = nullptr, binaryTree* right = nullptr):
+            letter(letter), occurrence(occurrence), left(left), right(right)
+        {};
 
         void increment();
         char getChar() const;

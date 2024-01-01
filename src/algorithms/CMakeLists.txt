@@ -10,4 +10,5 @@ target_sources(
     algorithms
     PUBLIC
     letterCounter.cpp
+    generateHuffmanTree.cpp
 )

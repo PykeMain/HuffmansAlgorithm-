@@ -16,7 +16,7 @@ int main(){
             if(lookUpTable[j].first < (1 << (lookUpTable[j].second - i))){
                 std::cout << "0";
             }
-            std::cout << lookUpTable[j].first << " \"" << (char) j << "\""; 
+            std::cout << lookUpTable[j].first << " \"" << (char) j << "\"" << std::endl; 
         }
     }
 
