@@ -7,6 +7,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 include(CTest)
 enable_testing()
 
+###probably should be here the dir text mover
 add_subdirectory(src)
 add_subdirectory(test)
 
