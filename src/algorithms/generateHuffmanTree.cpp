@@ -32,7 +32,6 @@ binaryTree* createHuffmanTree(std::vector<myPair> occurrenceTable){
         secondT = pickTree(leafs, trees);
         if(secondT != nullptr && firstT != nullptr){
             trees.push(new binaryTree('\0', firstT->getOccurrence() + secondT->getOccurrence(), firstT, secondT));
-            std::cout << firstT->getOccurrence() + secondT->getOccurrence() << std::endl;
         }else if(firstT != nullptr){
             trees.push(firstT);
         }
@@ -41,21 +40,31 @@ binaryTree* createHuffmanTree(std::vector<myPair> occurrenceTable){
     return trees.front();
 }
 
-void printHuffmanTree(binaryTree* root, std::size_t code, std::size_t codeSize, std::vector<std::pair<std::size_t, std::size_t>>& lookUpTable){
+void printHuffmanTree(binaryTree* root, std::size_t code, std::size_t codeSize, std::vector<std::pair<std::string, bool>>& lookUpTable){
     if(root == nullptr){
         std::cout << "Huh";
         return;
     }
 
     if(root->noChildren()){
-        for(std::size_t i = 0; i < codeSize; ++i){
-            std::cout << "  ";
-        }
-        std::cout << "\"" << root->getChar() << "\"" << std::endl;
-        lookUpTable[root->getChar()] = std::make_pair(code, codeSize);
+        lookUpTable[root->getChar()] = std::make_pair(treeToBinary(code, codeSize) , true);
         return;
     }
 
     printHuffmanTree(root->getLeft(), (code << 1) + 1, codeSize + 1, lookUpTable);
     printHuffmanTree(root->getRight(), (code << 1), codeSize + 1, lookUpTable);
+}
+
+std::string treeToBinary(std::size_t code, std::size_t codeSize){
+    std::string binary = "";
+
+    while(code > 0){
+        binary = (code%2 ? "1" : "0") + binary;
+        code /= 2;
+    }
+
+    for(std::size_t i = codeSize - binary.size(); i > 0; --i){
+        binary= "0" + binary;
+    }
+    return binary;
 }
