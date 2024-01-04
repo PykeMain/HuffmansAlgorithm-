@@ -7,6 +7,7 @@ target_link_libraries(
     PUBLIC
     algorithms
     structures
+    fileManager
 )
 
 target_sources(

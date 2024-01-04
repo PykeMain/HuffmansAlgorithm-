@@ -1,3 +1,4 @@
 add_subdirectory(algorithms)
 add_subdirectory(structures)
 add_subdirectory(app)
+add_subdirectory(fileManager)
