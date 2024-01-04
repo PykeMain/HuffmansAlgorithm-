@@ -8,8 +8,17 @@
 int main(){
     std::string name = "wibawoba.txt";
     std::string content;
-    std::ifstream in("../../text" + name);
-    std::vector<std::pair<char,std::size_t>> test = letterCounter("this is an example of a huffman tree");
+    std::ifstream in("../../text/" + name);
+
+    if(!in.is_open()){
+        throw std::invalid_argument("lmao");
+    }
+    std::string temp;
+    while(!in.eof()){
+        std::getline(in, temp);
+        content += temp;
+    }
+    std::vector<std::pair<char,std::size_t>> test = letterCounter(content);
     std::vector<std::pair<std::string, bool>> lookUpTable(256, std::make_pair("", false));
     std::vector<std::pair<std::string, bool>> lookUpTable2(256, std::make_pair("", false));
     printHuffmanTree(createHuffmanTree(test), 0, 0, lookUpTable);
