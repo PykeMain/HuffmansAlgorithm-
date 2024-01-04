@@ -10,6 +10,10 @@ void binaryTree::dealocate(){
     delete this;
 }
 
+binaryTree::~binaryTree(){
+    this->dealocate();
+}
+
 
 void binaryTree::increment(){
     ++this->occurrence;

@@ -23,6 +23,8 @@ class binaryTree{
             letter(letter), occurrence(occurrence), left(left), right(right)
         {};
 
+        ~binaryTree();
+
         void increment();
         char getChar() const;
         std::size_t getOccurrence() const;

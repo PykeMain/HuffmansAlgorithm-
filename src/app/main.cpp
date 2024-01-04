@@ -12,7 +12,9 @@ int main(){
     std::vector<std::pair<char,std::size_t>> test = letterCounter(content);
     std::vector<std::pair<std::string, bool>> lookUpTable(256, std::make_pair("", false));
     std::vector<std::pair<std::string, bool>> lookUpTable2(256, std::make_pair("", false));
-    printHuffmanTree(createHuffmanTree(test), 0, 0, lookUpTable);
+    binaryTree *tree = createHuffmanTree(test);
+
+    printHuffmanTree(tree, 0, 0, lookUpTable);
 
     for(int i = 0; i < 256; ++i){
         if(lookUpTable[i].second){
