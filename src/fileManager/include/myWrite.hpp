@@ -3,8 +3,8 @@
 #include <string>
 #include <fstream>
 
-void myWrite(std::string name);
+void myWrite(std::string name, std::string content, bool isEncoded);
 
-void writeASCII(std::ifstream& name, std::string& result);
+void writeASCII(std::ofstream& out, std::string content);
 
-void writeBinary(std::ifstream& name, std::string& result);
+void writeBinary(std::ofstream& out, std::string content);

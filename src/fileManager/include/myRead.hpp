@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <iostream>
 #include <fstream>
 
 std::string myRead(std::string name);

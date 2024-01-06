@@ -2,12 +2,13 @@
 #include "generateHuffmanTree.hpp"
 #include "binaryTree.hpp"
 #include "myRead.hpp"
+#include "myWrite.hpp"
 #include <iostream>
 
 int main(){
     std::string name = "wibawoba.txt";
     std::string content = myRead(name);
-    std::string encoded;
+    std::string encoded, decoded;
 
     std::vector<std::pair<char,std::size_t>> test = letterCounter(content);
     std::vector<std::pair<std::string, bool>> lookUpTable(256, std::make_pair("", false));
@@ -30,5 +31,24 @@ int main(){
               << "New size: " << encoded.size() <<  std::endl
               << "Compresion: ~" << (encoded.size() * 100) / (content.size() * 8)  << "%"<< std::endl;
 
+    myWrite("test", encoded, false);
+
+    binaryTree *temp = tree;
+    for(std::size_t i = 0; i < encoded.size(); ++i){
+        if(encoded[i] == '1'){
+            temp = temp->getLeft();
+        }else{
+            temp = temp->getRight();
+        }
+
+        if(temp->noChildren()){
+            decoded+= temp->getChar();
+            temp = tree;
+        }
+    }
+
+    std::cout << "Decoded size: " << decoded.size() * 8 << std::endl;
+
+    myWrite("test1", decoded, false);
     return 0;
 }
