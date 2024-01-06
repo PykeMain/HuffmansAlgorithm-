@@ -6,7 +6,7 @@
 #include <iostream>
 
 int main(){
-    std::string name = "wibo.txt";
+    std::string name = "book1.txt";
     std::string content = myRead(name);
     std::string encoded, decoded;
 
@@ -31,13 +31,13 @@ int main(){
               << "New size: " << encoded.size() <<  std::endl
               << "Compresion: ~" << (encoded.size() * 100) / (content.size() * 8)  << "%"<< std::endl;
 
-    myWrite("test", encoded, false);
-    myWrite("test2", encoded, true);
+    myWrite("test_book1", encoded, false);
+    //myWrite("test2", encoded, true);
 
     decoded = decodeHuffman(tree, encoded);
 
     std::cout << "Decoded size: " << decoded.size() * 8 << std::endl;
 
-    myWrite("test1", decoded, false);
+    myWrite("test1_book1", decoded, false);
     return 0;
 }

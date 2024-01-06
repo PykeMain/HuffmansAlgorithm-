@@ -1,0 +1,2 @@
+/usr/bin/ar qc libfileManager.a CMakeFiles/fileManager.dir/myRead.cpp.o CMakeFiles/fileManager.dir/myWrite.cpp.o
+/usr/bin/ranlib libfileManager.a
