@@ -2,6 +2,7 @@
 
 #include <string>
 #include <fstream>
+#include <iostream>
 
 void myWrite(std::string name, std::string content, bool isEncoded);
 

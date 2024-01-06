@@ -6,7 +6,7 @@
 #include <iostream>
 
 int main(){
-    std::string name = "wibawoba.txt";
+    std::string name = "wibo.txt";
     std::string content = myRead(name);
     std::string encoded, decoded;
 
@@ -32,6 +32,7 @@ int main(){
               << "Compresion: ~" << (encoded.size() * 100) / (content.size() * 8)  << "%"<< std::endl;
 
     myWrite("test", encoded, false);
+    myWrite("test2", encoded, true);
 
     decoded = decodeHuffman(tree, encoded);
 

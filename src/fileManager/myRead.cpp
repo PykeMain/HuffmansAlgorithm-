@@ -21,10 +21,14 @@ void readASCII(std::ifstream& in, std::string& result){
         throw std::invalid_argument("File doesn't exist.");
     }
     std::string temp;
-    while(!in.eof()){
+    if(!in.eof()){
         std::getline(in, temp);
         result += temp;
+    }
+    while(!in.eof()){
         result += "\n";
+        std::getline(in, temp);
+        result += temp;
     }
 }
 
