@@ -33,19 +33,7 @@ int main(){
 
     myWrite("test", encoded, false);
 
-    binaryTree *temp = tree;
-    for(std::size_t i = 0; i < encoded.size(); ++i){
-        if(encoded[i] == '1'){
-            temp = temp->getLeft();
-        }else{
-            temp = temp->getRight();
-        }
-
-        if(temp->noChildren()){
-            decoded+= temp->getChar();
-            temp = tree;
-        }
-    }
+    decoded = decodeHuffman(tree, encoded);
 
     std::cout << "Decoded size: " << decoded.size() * 8 << std::endl;
 

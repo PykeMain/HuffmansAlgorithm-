@@ -68,3 +68,21 @@ std::string treeToBinary(std::size_t code, std::size_t codeSize){
     }
     return binary;
 }
+
+std::string decodeHuffman(binaryTree* root, std::string encoded){
+    std::string result;
+    binaryTree *temp = root;
+    for(std::size_t i = 0; i < encoded.size(); ++i){
+        if(encoded[i] == '1'){
+            temp = temp->getLeft();
+        }else{
+            temp = temp->getRight();
+        }
+
+        if(temp->noChildren()){
+            result += temp->getChar();
+            temp = root;
+        }
+    }
+    return result;
+}

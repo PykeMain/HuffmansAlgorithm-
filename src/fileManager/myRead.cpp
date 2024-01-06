@@ -24,6 +24,7 @@ void readASCII(std::ifstream& in, std::string& result){
     while(!in.eof()){
         std::getline(in, temp);
         result += temp;
+        result += "\n";
     }
 }
 
