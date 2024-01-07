@@ -4,6 +4,7 @@
 #include "myRead.hpp"
 #include "myWrite.hpp"
 #include <iostream>
+#include <bitset>
 
 int main(){
     std::string name = "wibo.txt";
@@ -35,8 +36,13 @@ int main(){
     myWrite("test2_wibo", encoded, true);
 
     std::string readingBinary = myRead("test2_wibo.dat");
+    std::string temp;
+    for (std::size_t i = 0; i < readingBinary.size(); ++i)
+    {
+        temp += "" + std::bitset<8>(readingBinary.c_str()[i]).to_string();
+    }
 
-    decoded = decodeHuffman(tree, readingBinary);
+    decoded = decodeHuffman(tree, temp);
     std::cout << "Decoded size: " << decoded.size() * 8 << std::endl;
 
     myWrite("test_from_read_wibo", decoded, false);

@@ -17,7 +17,7 @@ void writeASCII(std::ofstream& out, std::string content){
 }
 
 void writeBinary(std::ofstream& out, std::string content){
-    int temp;
+    unsigned int temp;
     for(int i = 0; i < content.size() / 32; ++i){
         temp = 0;
         for(int j = 0; j < 32; ++j){
@@ -25,7 +25,7 @@ void writeBinary(std::ofstream& out, std::string content){
             //std::cout << (content[i * 32 + j] == '0') ? 0 : 1;
         }
         out.write((const char*)&temp, 4);
-        //std::cout << "=" << temp << " ";
+        std::cout << "=" << temp << " ";
     }
     if(content.size() % 32 != 0){
         temp = 0;

@@ -40,5 +40,6 @@ void readBinary(std::ifstream& in, std::string& result){
     in.seekg(0);
     unsigned char *data = new unsigned char[lenght];
     in.read((char *)data, lenght);
+    std::cout << data;
     result = reinterpret_cast<char const*>(data);
 }
