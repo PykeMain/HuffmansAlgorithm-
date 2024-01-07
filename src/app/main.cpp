@@ -6,7 +6,7 @@
 #include <iostream>
 
 int main(){
-    std::string name = "book1.txt";
+    std::string name = "wibo.txt";
     std::string content = myRead(name);
     std::string encoded, decoded;
 
@@ -31,13 +31,14 @@ int main(){
               << "New size: " << encoded.size() <<  std::endl
               << "Compresion: ~" << (encoded.size() * 100) / (content.size() * 8)  << "%"<< std::endl;
 
-    myWrite("test_book1", encoded, false);
-    //myWrite("test2", encoded, true);
+    myWrite("test_wibo", encoded, false);
+    myWrite("test2_wibo", encoded, true);
 
-    decoded = decodeHuffman(tree, encoded);
+    std::string readingBinary = myRead("test2_wibo.dat");
 
+    decoded = decodeHuffman(tree, readingBinary);
     std::cout << "Decoded size: " << decoded.size() * 8 << std::endl;
 
-    myWrite("test1_book1", decoded, false);
+    myWrite("test_from_read_wibo", decoded, false);
     return 0;
 }

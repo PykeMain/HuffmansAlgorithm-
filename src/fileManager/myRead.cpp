@@ -36,6 +36,7 @@ void readBinary(std::ifstream& in, std::string& result){
     std::size_t lenght;
     in.seekg(0, std::ios::end);
     lenght = in.tellg();
+    std::cout << lenght;
     in.seekg(0);
     unsigned char *data = new unsigned char[lenght];
     in.read((char *)data, lenght);
