@@ -39,36 +39,36 @@ void readBinary(std::ifstream& in, std::string& result){
     lenght = in.tellg();
     std::cout << lenght * 8 << " " << lenght << std::endl;
     
-    in.seekg(0);
-    unsigned char *data = new unsigned char[lenght];
-    in.read((char *)data, lenght);
-    
-    char copy;
-    std::string byte1, byte4;
-    for(std::size_t i = 0; i < lenght / 4; ++i ){
-        byte4 = "";
-        for(int k = 0; k < 4; ++k){
-            copy = data[i*4 + k];
-            byte1 = "";
-            for(int j = 0; j < 8; ++j){
-                byte1 = ((copy % 2 == 0) ? '0' : '1') + byte1;
-                copy /= 2; 
-            }
-            byte4 = byte1 + byte4;
+    in.seekg(0, in.beg);
+    unsigned int temp;
+    std::string byte1;
+    while(!in.eof()){
+        temp = 0;
+        byte1 = "";
+        in.read((char *)&temp, sizeof(int));
+        std::cout << temp << std::endl;
+        for(int j = 0; j < sizeof(int) * 8; ++j){
+            byte1 = ((temp % 2 == 0) ? '0' : '1') + byte1;
+            temp /= 2; 
         }
-        result += byte4;
+        result += byte1; 
     }
-    byte4 = "";
-    for(int i = 0; i < lenght % 4; ++i){
-        copy = data[lenght/4 + i];
-            byte1 = "";
-            for(int j = 0; j < 8; ++j){
-                byte1 = ((copy % 2 == 0) ? '0' : '1') + byte1;
-                copy /= 2; 
-            }
-            byte4 = byte1 + byte4;
-    }
-    result += byte4;
+    
+
+    // for(std::size_t i = 0; i < lenght / 4; ++i ){
+    //     byte4 = "";
+    //     for(int k = 0; k < 4; ++k){
+    //         copy = data[i*4 + k];
+    //         std::cout << data[i*4 +k];
+    //         byte1 = "";
+    //         for(int j = 0; j < 8; ++j){
+    //             byte1 = ((copy % 2 == 0) ? '0' : '1') + byte1;
+    //             copy /= 2; 
+    //         }
+    //         byte4 = byte1 + byte4;
+    //     }
+    //     result += byte4;
+    // }
     //result = reinterpret_cast<char const*>(data);
     // std::cout << result;
 }
