@@ -7,7 +7,7 @@
 #include <bitset>
 
 int main(){
-    std::string name = "wibo.txt";
+    std::string name = "wibawoba.txt";
     std::string content = myRead(name);
     std::string encoded, decoded;
 
@@ -32,15 +32,15 @@ int main(){
               << "New size: " << encoded.size() <<  std::endl
               << "Compresion: ~" << (encoded.size() * 100) / (content.size() * 8)  << "%"<< std::endl;
 
-    myWrite("test_wibo", encoded, false);
-    myWrite("test2_wibo", encoded, true);
+    myWrite("test_wibawoba", encoded, false);
+    myWrite("test2_wibawoba", encoded, true);
 
-    std::string readingBinary = myRead("test2_wibo.dat");
-    std::cout << readingBinary;
+    std::string readingBinary = myRead("test2_wibawoba.dat");
+    // std::cout << readingBinary;
 
     decoded = decodeHuffman(tree, readingBinary);
     std::cout << "Decoded size: " << decoded.size()<< std::endl;
 
-    myWrite("test_from_read_wibo", decoded, false);
+    myWrite("test_from_read_wibawoba", decoded, false);
     return 0;
 }

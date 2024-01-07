@@ -19,6 +19,8 @@ void writeASCII(std::ofstream& out, std::string content){
 const int LOOP = sizeof(int) * 8;
 
 void writeBinary(std::ofstream& out, std::string content){
+    unsigned char mod = (content.size() % LOOP);
+    out.write((const char*)& mod, sizeof(char));
     unsigned int temp;
 
     for(int i = 0; i < content.size() / LOOP; ++i){

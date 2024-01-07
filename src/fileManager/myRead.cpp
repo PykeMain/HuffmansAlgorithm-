@@ -34,25 +34,37 @@ void readASCII(std::ifstream& in, std::string& result){
 
 void readBinary(std::ifstream& in, std::string& result){
     std::size_t lenght;
-    
-    in.seekg(0, std::ios::end);
+    unsigned char mod = 'a';
+    in.seekg(0);
+    in.read((char *)& mod, sizeof(char));
+
+    in.seekg(1, std::ios::end);
     lenght = in.tellg();
     std::cout << lenght * 8 << " " << lenght << std::endl;
     
-    in.seekg(0, in.beg);
+    in.seekg(1);
     unsigned int temp;
     std::string byte1;
-    while(!in.eof()){
+    while(in.tellg() < lenght - 5){
         temp = 0;
         byte1 = "";
         in.read((char *)&temp, sizeof(int));
-        std::cout << temp << std::endl;
         for(int j = 0; j < sizeof(int) * 8; ++j){
             byte1 = ((temp % 2 == 0) ? '0' : '1') + byte1;
             temp /= 2; 
         }
         result += byte1; 
     }
+
+    temp = 0;
+    byte1 = "";
+    in.read((char *)&temp, sizeof(int));
+    std::cout << temp << std::endl;
+    for(int j = 0; j < mod ; ++j){
+        byte1 = ((temp % 2 == 0) ? '0' : '1') + byte1;
+        temp /= 2; 
+    }
+    result += byte1; 
     
 
     // for(std::size_t i = 0; i < lenght / 4; ++i ){
