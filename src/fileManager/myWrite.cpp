@@ -16,21 +16,25 @@ void writeASCII(std::ofstream& out, std::string content){
     out << content;
 }
 
+const int LOOP = sizeof(int) * 8;
+
 void writeBinary(std::ofstream& out, std::string content){
     unsigned int temp;
-    for(int i = 0; i < content.size() / 16; ++i){
+
+    for(int i = 0; i < content.size() / LOOP; ++i){
         temp = 0;
-        for(int j = 0; j < 16; ++j){
-            temp = (temp << 1) + ((content[i * 16 + j] == '0') ? 0 : 1);
-            //std::cout << (content[i * 16 + j] == '0') ? 0 : 1;
+        for(int j = 0; j < LOOP; ++j){
+            temp = (temp << 1) + ((content[i * LOOP + j] == '0') ? 0 : 1);
+            //std::cout << (content[i * LOOP + j] == '0') ? 0 : 1;
         }
         out.write((const char*)&temp, sizeof(int));
-        std::cout << "=" << temp << " ";
+        //std::cout << "=" << temp << " ";
     }
-    if(content.size() % 16 != 0){
+
+    if(content.size() % LOOP != 0){
         temp = 0;
-        for(int k = 0; k < content.size() % 16 ; ++k){
-            temp = (temp << 1) + ((content[content.size() - content.size() % 16 + k] == '0') ? 0 : 1);
+        for(int k = 0; k < content.size() % LOOP ; ++k){
+            temp = (temp << 1) + ((content[content.size() - content.size() % LOOP + k] == '0') ? 0 : 1);
         }
         out.write((const char*)&temp, sizeof(int));
     }

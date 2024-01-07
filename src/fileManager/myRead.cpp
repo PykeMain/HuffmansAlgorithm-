@@ -34,12 +34,41 @@ void readASCII(std::ifstream& in, std::string& result){
 
 void readBinary(std::ifstream& in, std::string& result){
     std::size_t lenght;
+    
     in.seekg(0, std::ios::end);
     lenght = in.tellg();
-    std::cout << lenght;
+    std::cout << lenght * 8 << " " << lenght << std::endl;
+    
     in.seekg(0);
     unsigned char *data = new unsigned char[lenght];
     in.read((char *)data, lenght);
-    std::cout << data;
-    result = reinterpret_cast<char const*>(data);
+    
+    char copy;
+    std::string byte1, byte4;
+    for(std::size_t i = 0; i < lenght / 4; ++i ){
+        byte4 = "";
+        for(int k = 0; k < 4; ++k){
+            copy = data[i*4 + k];
+            byte1 = "";
+            for(int j = 0; j < 8; ++j){
+                byte1 = ((copy % 2 == 0) ? '0' : '1') + byte1;
+                copy /= 2; 
+            }
+            byte4 = byte1 + byte4;
+        }
+        result += byte4;
+    }
+    byte4 = "";
+    for(int i = 0; i < lenght % 4; ++i){
+        copy = data[lenght/4 + i];
+            byte1 = "";
+            for(int j = 0; j < 8; ++j){
+                byte1 = ((copy % 2 == 0) ? '0' : '1') + byte1;
+                copy /= 2; 
+            }
+            byte4 = byte1 + byte4;
+    }
+    result += byte4;
+    //result = reinterpret_cast<char const*>(data);
+    // std::cout << result;
 }

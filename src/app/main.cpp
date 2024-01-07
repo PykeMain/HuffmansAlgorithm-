@@ -28,7 +28,7 @@ int main(){
         encoded += lookUpTable[content[t]].first;
     }
 
-    std::cout << "Original size: " << content.size() * 8 << std::endl
+    std::cout << "Original size: " << content.size() * 8 << " bits and " << content.size() << "characters" << std::endl
               << "New size: " << encoded.size() <<  std::endl
               << "Compresion: ~" << (encoded.size() * 100) / (content.size() * 8)  << "%"<< std::endl;
 
@@ -36,14 +36,10 @@ int main(){
     myWrite("test2_wibo", encoded, true);
 
     std::string readingBinary = myRead("test2_wibo.dat");
-    std::string temp;
-    for (std::size_t i = 0; i < readingBinary.size(); ++i)
-    {
-        temp += "" + std::bitset<8>(readingBinary.c_str()[i]).to_string();
-    }
+    std::cout << readingBinary;
 
-    decoded = decodeHuffman(tree, temp);
-    std::cout << "Decoded size: " << decoded.size() * 8 << std::endl;
+    decoded = decodeHuffman(tree, readingBinary);
+    std::cout << "Decoded size: " << decoded.size()<< std::endl;
 
     myWrite("test_from_read_wibo", decoded, false);
     return 0;

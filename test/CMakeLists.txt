@@ -8,6 +8,14 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(Catch2)
 
+# FetchContent_Declare(
+#   DocTest
+#   GIT_REPOSITORY https://github.com/catchorg/Catch2.git
+#   GIT_TAG        ae7a13539fb71f270b87eb2e874fbac80bc8dda2
+# )
+
+# FetchContent_MakeAvailable(DocTest)
+
 cmake_minimum_required(VERSION 3.13)
 
 list(APPEND CMAKE_MODULE_PATH ${catch2_SOURCE_DIR}/extras)
