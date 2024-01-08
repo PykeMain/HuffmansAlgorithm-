@@ -5,6 +5,7 @@
 #include <string>
 #include <queue>
 #include <algorithm>
+#include <iostream>
 
 typedef std::pair<char,std::size_t> myPair;
 
@@ -25,17 +26,13 @@ class binaryTree{
         {};
 
         binaryTree(binaryTree* other){
-            copyFrom(other);
+            this->copyFrom(other);
         };
 
-        binaryTree(const std::string& str){
-            std::size_t current = 0;
-            copyFrom(createFromString(str, current));
-        };
 
         ~binaryTree();
 
-        //binaryTree& operator= (binaryTree*);
+        binaryTree& operator= (binaryTree*);
 
         char getChar() const;
         std::size_t getOccurrence() const;
@@ -45,4 +42,5 @@ class binaryTree{
         binaryTree* getRight();
         
         std::string toString() const;
+        void fromString(const std::string&);
 };

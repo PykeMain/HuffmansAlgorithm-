@@ -11,35 +11,51 @@ void binaryTree::dealocate(){
 }
 
 void binaryTree::copyFrom(binaryTree* other){
+    if(other->noChildren()){
+        this->letter = other->getChar();
+        this->occurrence = other->getOccurrence();
+        return;
+    }
     this->letter = other->getChar();
     this->occurrence = other->getOccurrence();
-
-    this->left->copyFrom(other->getLeft());
-    this->right->copyFrom(other->getRight());
+    this->left = new binaryTree (other->getLeft());
+    this->right = new binaryTree (other->getRight());
 }
 
 binaryTree* binaryTree::createFromString(const std::string& str, std::size_t &current){
-    if(str[current] == '0'){
-        current += 9;
-        return new binaryTree(std::stoi(str.substr(current - 8, 8)), 0);
+    if(current >= str.size()){
+        std::cout << "hello" << std::endl;
+        return nullptr;
     }
-    ++current;
-    return new binaryTree('\0', 0, createFromString( str, current), createFromString( str, current));
 
+    if(str[current] == '0'){
+        std::cout << str.substr(current + 1, 8) << std::endl;
+        binaryTree* buffer = new binaryTree(std::stoi(str.substr(current + 1, 8), 0, 2), 0);
+        current+=9;
+        return buffer;
+    }
+    current++;
+    binaryTree* left = createFromString( str, current);
+    binaryTree* right = createFromString( str, current);
+    return new binaryTree('a', 0, left, right);
 }
 
 binaryTree::~binaryTree(){
     this->dealocate();
 }
 
-// binaryTree& operator= (const binaryTree* rhs){
-//     if(this != &rhs){
-//         this->left->dealocate();
-//         this->right->dealocate();
-//         copyFrom(rhs);
-//     }
-//     return *this;
-// }
+binaryTree& binaryTree::operator= (binaryTree* rhs){
+    if(this != rhs){
+        if(this->left != nullptr){
+            this->left->dealocate();
+        }
+        if(this->right != nullptr){
+            this->right->dealocate();
+        }
+        copyFrom(rhs);
+    }
+    return *this;
+}
 
 
 std::size_t binaryTree::getOccurrence() const{
@@ -75,5 +91,10 @@ std::string binaryTree::toString() const{
         return "0" + temp;
     }
 
-    return "1" + this->left->toString() + "1" + this->right->toString();
+    return "1" + this->left->toString() + this->right->toString();
+}
+
+void binaryTree::fromString(const std::string& str){
+    std::size_t current = 0;
+    this->copyFrom(createFromString(str, current));
 }

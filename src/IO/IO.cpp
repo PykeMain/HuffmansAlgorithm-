@@ -16,44 +16,59 @@ IO& IO::getInstance(){
 
 void IO::menu(){
     while(true){
-        std::cout << "Type \"help\" for more info." << std::endl;
+        std::cout << ">";
         std::cin >> input;
 
         
 
-        if(input == "e"){
-            if(!opened){
-                break;
-            }
-            std::cout << "You are still have a file opened." << std::endl;
+        if(input == "e")
+        {
+            break;
         }
-        
-        else if(input == "h"){
+        else if(input == "h")
+        {
             help();
-        }else if(input == "i"){
+        }
+        else if(input == "i")
+        {
             inputting();
-        }else if(input == "o"){
+        }
+        else if(input == "o")
+        {
             outputting();
-        }else if(input == "g"){
+        }
+        else if(input == "g")
+        {
             debug();
-        }else if(input == "c"){
+        }
+        else if(input == "c")
+        {
             encode();
-        }else if(input == "d"){
+        }
+        else if(input == "d")
+        {
             decode();
-        }else{
+        }
+        else
+        { 
             std::cout << "Not a command. Type \"help\" to learn what is." << std::endl;
         }
     }
 }
 
 void IO::help(){
-    
+    std::cout << "h (help)" << std::endl
+              << "i <filename> (input)" << std::endl
+              << "o <filename> (output)" << std::endl
+              << "c (compress)" << std::endl
+              << "d (decompress)" << std::endl
+              << "g (debug)" << std::endl;
 }
 
 void IO::inputting(){
     std::cin >> input;
 
-    if(!fileExist("../../text" + input)){
+    if(!fileExist("../../text/" + input)){
         std::cout << "File doesn't exist and no point creating an empty file to read." << std::endl;
         return;
     }
@@ -63,7 +78,8 @@ void IO::inputting(){
             std::cout << "The Huffman tree to the coresponding file ins't in the folder." << std::endl;
             return;
         }
-        root = new binaryTree(myRead("key_" + input));
+        root = new binaryTree();
+        root->fromString(myRead("key_" + input));
     }
     content = myRead(input);
     opened = true;
@@ -140,9 +156,10 @@ void IO::encode(){
               << "Compression rate is " <<  (encodedBuffer.size() * 100) / (content.size() * 8)  << "%"<< std::endl;
 
     content = encodedBuffer;
-    encoded == true;
+    encoded = true;
 }
 
 void IO::decode(){
-
+    content = decodeHuffman(root, content);
+    encoded = false;
 }
