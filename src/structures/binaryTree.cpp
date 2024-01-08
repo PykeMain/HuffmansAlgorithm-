@@ -10,14 +10,24 @@ void binaryTree::dealocate(){
     delete this;
 }
 
+/* binaryTree* binaryTree::createFromString(const std::string& str, std::size_t &current){
+    if(str[current] == "0"){
+        current += 9;
+        return new binaryTree(std::stoi(str.substr(current - 8, 8)), 0, );
+    }
+
+    return new binaryTree('/0')
+
+}*/ 
+
+// binaryTree::binaryTree(const std::string& str){
+//     this = createFromString(str);
+// }
+
 binaryTree::~binaryTree(){
     this->dealocate();
 }
 
-
-void binaryTree::increment(){
-    ++this->occurrence;
-}
 
 std::size_t binaryTree::getOccurrence() const{
     return this->occurrence;
@@ -40,5 +50,17 @@ binaryTree* binaryTree::getLeft(){
 }
 
 binaryTree* binaryTree::getRight(){
-    return right;
+    return this->right;
+}
+
+std::string binaryTree::toString() const{
+    if(this->noChildren()){
+        std::string temp = "";
+        for(int i = 0; i < 8; ++i){
+            temp = ((((this->letter >> i) & 1 )== 0) ? "0" : "1") + temp;
+        }
+        return "0" + temp;
+    }
+
+    return "1" + this->left->toString() + "1" + this->right->toString();
 }

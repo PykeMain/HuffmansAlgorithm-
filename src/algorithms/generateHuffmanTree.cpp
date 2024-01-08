@@ -42,12 +42,11 @@ binaryTree* createHuffmanTree(std::vector<myPair> occurrenceTable){
 
 void printHuffmanTree(binaryTree* root, std::size_t code, std::size_t codeSize, std::vector<std::pair<std::string, bool>>& lookUpTable){
     if(root == nullptr){
-        std::cout << "Huh";
-        return;
+        throw std::invalid_argument("Somehow there is a stick in the tree");
     }
 
     if(root->noChildren()){
-        lookUpTable[root->getChar()] = std::make_pair(treeToBinary(code, codeSize) , true);
+        lookUpTable[root->getChar()] = std::make_pair(leafToBinary(code, codeSize) , true);
         return;
     }
 
@@ -55,7 +54,7 @@ void printHuffmanTree(binaryTree* root, std::size_t code, std::size_t codeSize, 
     printHuffmanTree(root->getRight(), (code << 1), codeSize + 1, lookUpTable);
 }
 
-std::string treeToBinary(std::size_t code, std::size_t codeSize){
+std::string leafToBinary(std::size_t code, std::size_t codeSize){
     std::string binary = "";
 
     while(code > 0){
@@ -67,6 +66,17 @@ std::string treeToBinary(std::size_t code, std::size_t codeSize){
         binary= "0" + binary;
     }
     return binary;
+}
+
+std::string byteToNumber(std::string encoded){
+    std::string result;
+    for(std::size_t i = 0; i < encoded.size() / 8; ++i){
+        result += std::to_string(std::stoi(encoded.substr(i*8, 8), 0, 2)) + " ";
+    }
+    if(encoded.size() % 8 != 0){
+        result += std::to_string(std::stoi(encoded.substr(encoded.size() - encoded.size() % 8 - 1, encoded.size() % 8), 0, 2)) + " ";
+    }
+    return result;
 }
 
 std::string decodeHuffman(binaryTree* root, std::string encoded){

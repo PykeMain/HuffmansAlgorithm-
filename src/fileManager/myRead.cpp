@@ -34,10 +34,12 @@ void readASCII(std::ifstream& in, std::string& result){
 
 void readBinary(std::ifstream& in, std::string& result){
     std::size_t lenght;
-    unsigned char mod = 'a';
+    unsigned char mod;
     in.seekg(0);
     in.read((char *)& mod, sizeof(char));
-
+    if(mod == 0){
+        mod = 32;
+    }
     in.seekg(1, std::ios::end);
     lenght = in.tellg();
     std::cout << lenght * 8 << " " << lenght << std::endl;
