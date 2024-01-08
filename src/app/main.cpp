@@ -50,18 +50,6 @@
 
 //     binaryTree* read  = new binaryTree();
 //     read->fromString(rB);
-
-//     printHuffmanTree(tree, 0, 0, lookUpTable);
-
-//     for(int i = 0; i < 256; ++i){
-//         if(lookUpTable[i].second){
-//             std::cout << (char) i << " " << lookUpTable[i].first << std::endl;
-//         }
-//     }
-
-//     for(std::size_t t = 0; t < content.size(); ++t){
-//         encoded += lookUpTable[content[t]].first;
-//     }
 //     std::string testing = decodeHuffman(read, readingBinary);
 //     myWrite("test_from_read_abra2.txt", testing, false);
 
@@ -69,7 +57,6 @@
 // }
 
 #include "IO.hpp"
-
 
 int main(){
     try{

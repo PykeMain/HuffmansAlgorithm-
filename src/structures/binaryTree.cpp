@@ -24,12 +24,9 @@ void binaryTree::copyFrom(binaryTree* other){
 
 binaryTree* binaryTree::createFromString(const std::string& str, std::size_t &current){
     if(current >= str.size()){
-        std::cout << "hello" << std::endl;
         return nullptr;
     }
-
     if(str[current] == '0'){
-        std::cout << str.substr(current + 1, 8) << std::endl;
         binaryTree* buffer = new binaryTree(std::stoi(str.substr(current + 1, 8), 0, 2), 0);
         current+=9;
         return buffer;

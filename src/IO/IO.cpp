@@ -62,7 +62,8 @@ void IO::help(){
               << "o <filename> (output)" << std::endl
               << "c (compress)" << std::endl
               << "d (decompress)" << std::endl
-              << "g (debug)" << std::endl;
+              << "g (debug)" << std::endl
+              << "e (exit)" << std::endl;
 }
 
 void IO::inputting(){
@@ -73,13 +74,14 @@ void IO::inputting(){
         return;
     }
 
-    if(input.find(".dat") == input.size() - 5){
+    if(input.find(".dat") == input.size() - 4){
         if(!fileExist("../../text/key_" + input)){
             std::cout << "The Huffman tree to the coresponding file ins't in the folder." << std::endl;
             return;
         }
         root = new binaryTree();
         root->fromString(myRead("key_" + input));
+        std::cout << myRead("key_" + input) << std::endl;
     }
     content = myRead(input);
     opened = true;
@@ -160,6 +162,8 @@ void IO::encode(){
 }
 
 void IO::decode(){
+    std::cout << content << std::endl << root->toString() << std::endl;
+
     content = decodeHuffman(root, content);
     encoded = false;
 }

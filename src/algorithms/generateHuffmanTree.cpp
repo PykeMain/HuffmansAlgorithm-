@@ -89,6 +89,7 @@ std::string decodeHuffman(binaryTree* root, std::string encoded){
             temp = temp->getRight();
         }
 
+        std::cout << "help" << std::endl;
         if(temp->noChildren()){
             result += temp->getChar();
             temp = root;
