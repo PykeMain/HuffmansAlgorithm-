@@ -9,9 +9,17 @@
  * @class IO
 */
 
+#include "letterCounter.hpp"
+#include "generateHuffmanTree.hpp"
+#include "binaryTree.hpp"
+#include "myRead.hpp"
+#include "myWrite.hpp"
+
 class IO{
     private:
         std::string input; //!< General storage for user input
+        std::string content; //!< Storage for text
+        binaryTree* root; //!< Place to contain the Huffman tree
         bool encoded;   //!< A bool that stores whether a file has been changed after being saved
         bool saved; //!< A bool that stores whether a file has recently been saved
         bool opened; //!< A bool that stores whether a file is currently open

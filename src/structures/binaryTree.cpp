@@ -10,23 +10,36 @@ void binaryTree::dealocate(){
     delete this;
 }
 
-/* binaryTree* binaryTree::createFromString(const std::string& str, std::size_t &current){
-    if(str[current] == "0"){
+void binaryTree::copyFrom(binaryTree* other){
+    this->letter = other->getChar();
+    this->occurrence = other->getOccurrence();
+
+    this->left->copyFrom(other->getLeft());
+    this->right->copyFrom(other->getRight());
+}
+
+binaryTree* binaryTree::createFromString(const std::string& str, std::size_t &current){
+    if(str[current] == '0'){
         current += 9;
-        return new binaryTree(std::stoi(str.substr(current - 8, 8)), 0, );
+        return new binaryTree(std::stoi(str.substr(current - 8, 8)), 0);
     }
+    ++current;
+    return new binaryTree('\0', 0, createFromString( str, current), createFromString( str, current));
 
-    return new binaryTree('/0')
-
-}*/ 
-
-// binaryTree::binaryTree(const std::string& str){
-//     this = createFromString(str);
-// }
+}
 
 binaryTree::~binaryTree(){
     this->dealocate();
 }
+
+// binaryTree& operator= (const binaryTree* rhs){
+//     if(this != &rhs){
+//         this->left->dealocate();
+//         this->right->dealocate();
+//         copyFrom(rhs);
+//     }
+//     return *this;
+// }
 
 
 std::size_t binaryTree::getOccurrence() const{

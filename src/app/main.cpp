@@ -32,8 +32,8 @@ int main(){
               << "New size: " << encoded.size() <<  std::endl
               << "Compresion: ~" << (encoded.size() * 100) / (content.size() * 8)  << "%"<< std::endl;
 
-    myWrite("test_wibo", encoded, false);
-    myWrite("test2_wibo", encoded, true);
+    //myWrite("test_wibo", encoded, false);
+    myWrite("test2_wibo.dat", encoded, true);
 
     std::string readingBinary = myRead("test2_wibo.dat");
     // std::cout << readingBinary;
@@ -43,7 +43,7 @@ int main(){
               << "Encoded Debug mode: " << byteToNumber(encoded) << std::endl
               << "Tree to string: " << tree->toString() << std::endl;
 
-    myWrite("test_from_read_wibo", decoded, false);
+    myWrite("test_from_read_wibo.txt", decoded, false);
     return 0;
 }
 

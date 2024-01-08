@@ -1,14 +1,20 @@
 #include "include/myWrite.hpp"
 
 void myWrite(std::string name, std::string content, bool isEncoded){
-    if(!isEncoded){
-        std::ofstream out("../../text/" + name + ".txt");
+    if(!isEncoded && name.find(".txt") == name.size() - 4){
+        std::ofstream out("../../text/" + name);
         writeASCII(out, content);
         out.close();
-    }else{
-        std::ofstream out("../../text/" + name + ".dat", std::ios::binary);
+    }else if(isEncoded && name.find(".dat") == name.size() - 4){
+        std::ofstream out("../../text/" + name, std::ios::binary);
         writeBinary(out, content);
         out.close();
+    }else if(!isEncoded && name.find(".dat") == name.size() - 4){
+        throw std::invalid_argument("Can't write plain text in binary file.");
+    }else if(isEncoded && name.find(".txt") == name.size() - 4){
+        throw std::invalid_argument("Can't write encoded text in txt file.");
+    }else{
+        throw std::invalid_argument("How did you get here?");
     }
 }
 
@@ -27,10 +33,8 @@ void writeBinary(std::ofstream& out, std::string content){
         temp = 0;
         for(int j = 0; j < LOOP; ++j){
             temp = (temp << 1) + ((content[i * LOOP + j] == '0') ? 0 : 1);
-            //std::cout << (content[i * LOOP + j] == '0') ? 0 : 1;
         }
         out.write((const char*)&temp, sizeof(int));
-        //std::cout << "=" << temp << " ";
     }
 
     if(content.size() % LOOP != 0){
