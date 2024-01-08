@@ -46,3 +46,15 @@ int main(){
     myWrite("test_from_read_wibo", decoded, false);
     return 0;
 }
+
+// #include "IO.hpp"
+
+
+// int main(){
+//     try{
+//         IO::getInstance().menu();
+//     }catch(const std::exception& e){
+//         std::cerr << e.what() << '\n';
+//     }
+//     return 0;
+// }

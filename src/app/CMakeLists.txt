@@ -5,6 +5,7 @@ add_executable(
 target_link_libraries(
     app
     PUBLIC
+    IO
     algorithms
     structures
     fileManager
