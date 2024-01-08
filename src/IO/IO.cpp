@@ -11,6 +11,7 @@ bool IO::fileExist(const std::string& fileName){
 IO& IO::getInstance(){
     static IO object;
     object.saved = true;
+    object.root = new binaryTree();
     return object;
 }
 
@@ -80,10 +81,15 @@ void IO::inputting(){
             return;
         }
         root = new binaryTree();
-        root->fromString(myRead("key_" + input));
-        std::cout << myRead("key_" + input) << std::endl;
+        std::string name = "key_" + input;
+        std::string buffer = myRead(name);
+        root->fromString(buffer);
+        std::cout << buffer << std::endl << root->toString() << std::endl;
+        encoded = true;
     }
     content = myRead(input);
+    std::cout << content << std::endl;
+    content = decodeHuffman(root, content);
     opened = true;
 }
 
@@ -100,7 +106,7 @@ void IO::outputting(){
         return;
     }
 
-    if(fileExist("../../text" + input)){
+    if(fileExist("../../text/" + input)){
         std::string answer;
         std::cout << "File already exists. Do you want to override it? [y/n]" << std::endl;
 
@@ -121,7 +127,7 @@ void IO::outputting(){
     myWrite(input, content, encoded);
 
     if(encoded){
-        myWrite("key_" + input, root->toString(), encoded);
+        myWrite(("key_" + input), root->toString(), encoded);
     }
 
 }
@@ -162,8 +168,6 @@ void IO::encode(){
 }
 
 void IO::decode(){
-    std::cout << content << std::endl << root->toString() << std::endl;
-
     content = decodeHuffman(root, content);
     encoded = false;
 }

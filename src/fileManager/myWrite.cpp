@@ -25,14 +25,14 @@ void writeASCII(std::ofstream& out, std::string content){
 const int LOOP = sizeof(int) * 8;
 
 void writeBinary(std::ofstream& out, std::string content){
-    unsigned char mod = (content.size() % LOOP);
+    char mod = (content.size() % LOOP);
     out.write((const char*)& mod, sizeof(char));
     unsigned int temp;
-
+    std::cout << sizeof(int) << " " << sizeof(unsigned int) << std::endl;
     for(int i = 0; i < content.size() / LOOP; ++i){
         temp = 0;
         for(int j = 0; j < LOOP; ++j){
-            temp = (temp << 1) + ((content[i * LOOP + j] == '0') ? 0 : 1);
+            temp = (temp << 1) | ((content[i * LOOP + j] == '0') ? 0 : 1);
         }
         out.write((const char*)&temp, sizeof(int));
     }
@@ -40,7 +40,7 @@ void writeBinary(std::ofstream& out, std::string content){
     if(content.size() % LOOP != 0){
         temp = 0;
         for(int k = 0; k < content.size() % LOOP ; ++k){
-            temp = (temp << 1) + ((content[content.size() - content.size() % LOOP + k] == '0') ? 0 : 1);
+            temp = (temp << 1) | ((content[content.size() - content.size() % LOOP + k] == '0') ? 0 : 1);
         }
         out.write((const char*)&temp, sizeof(int));
     }

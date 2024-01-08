@@ -82,6 +82,7 @@ std::string byteToNumber(std::string encoded){
 std::string decodeHuffman(binaryTree* root, std::string encoded){
     std::string result;
     binaryTree *temp = root;
+    std::cout << "help" << std::endl;
     for(std::size_t i = 0; i < encoded.size(); ++i){
         if(encoded[i] == '1'){
             temp = temp->getLeft();
@@ -89,7 +90,6 @@ std::string decodeHuffman(binaryTree* root, std::string encoded){
             temp = temp->getRight();
         }
 
-        std::cout << "help" << std::endl;
         if(temp->noChildren()){
             result += temp->getChar();
             temp = root;

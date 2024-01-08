@@ -7,7 +7,7 @@ std::string myRead(const std::string name){
         readASCII(in, result);
         in.close();
     }else if(name.find(".dat") != std::string::npos){
-        std::ifstream in("../../text/" + name, std::ios::binary);
+        std::ifstream in("../../text/" + name, std::ios::binary | std::ios::in);
         readBinary(in, result);
         in.close();
     }else{

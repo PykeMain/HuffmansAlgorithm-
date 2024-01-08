@@ -12,6 +12,7 @@ void binaryTree::dealocate(){
 
 void binaryTree::copyFrom(binaryTree* other){
     if(other->noChildren()){
+    std::cout << other->getChar() << " ";
         this->letter = other->getChar();
         this->occurrence = other->getOccurrence();
         return;
@@ -23,18 +24,21 @@ void binaryTree::copyFrom(binaryTree* other){
 }
 
 binaryTree* binaryTree::createFromString(const std::string& str, std::size_t &current){
+    std::cout << current << std::endl;
     if(current >= str.size()){
+        std::cout << "did i enter?" << std::endl;
         return nullptr;
     }
     if(str[current] == '0'){
-        binaryTree* buffer = new binaryTree(std::stoi(str.substr(current + 1, 8), 0, 2), 0);
+        binaryTree* buffer = new binaryTree(std::stoul(str.substr(current + 1, 8), 0, 2));
+        std::cout << "stoul: " << std::stoul(str.substr(current + 1, 8), 0, 2) << std::endl;
         current+=9;
         return buffer;
     }
     current++;
     binaryTree* left = createFromString( str, current);
     binaryTree* right = createFromString( str, current);
-    return new binaryTree('a', 0, left, right);
+    return new binaryTree('\0', 0, left, right);
 }
 
 binaryTree::~binaryTree(){
@@ -82,12 +86,13 @@ binaryTree* binaryTree::getRight(){
 std::string binaryTree::toString() const{
     if(this->noChildren()){
         std::string temp = "";
+        std::cout << this->letter << std::endl;
         for(int i = 0; i < 8; ++i){
             temp = ((((this->letter >> i) & 1 )== 0) ? "0" : "1") + temp;
         }
         return "0" + temp;
     }
-
+    std::cout << "1" << std::endl;
     return "1" + this->left->toString() + this->right->toString();
 }
 
