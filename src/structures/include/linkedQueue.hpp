@@ -3,6 +3,7 @@
 /** @file LinkedQueue.hpp
  *  @brief A class for a queue created from linked lists
  *  @author Momchil Mladenov, 5MI0800232, Group 3
+ *  <3 pvarna
 */
 
 /**
@@ -74,7 +75,7 @@ public:
 
         return *this;
     }
-    
+
     //! Shows the element in the front of the list
     //! @return Said element
     const T& front() const
