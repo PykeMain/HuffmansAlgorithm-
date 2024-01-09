@@ -12,6 +12,8 @@ There is also a debug feature that prints the value of every byte in an encoded 
 There is a Doxyfile that needs to be ran to generate the documantation.
 
 Project is created with CMake so create a build folder on the level of src,test and text and then run:
-```cmake .. 
-make```
+```
+cmake .. 
+make
+```
 
