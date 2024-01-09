@@ -73,7 +73,7 @@ void IO::inputting(){
         std::cout << "File doesn't exist and no point creating an empty file to read." << std::endl;
         return;
     }
-
+    encoded = false;
     if(input.find(".dat") == input.size() - 4){
         if(!fileExist("../../text/key_" + input)){
             std::cout << "The Huffman tree to the coresponding file ins't in the folder." << std::endl;
@@ -186,4 +186,5 @@ void IO::decode(){
 
     content = decodeHuffman(root, content);
     encoded = false;
+    std::cout << "File has been decoded." << std::endl;
 }

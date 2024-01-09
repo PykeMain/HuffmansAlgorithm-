@@ -14,6 +14,7 @@
 #include "binaryTree.hpp"
 #include "myRead.hpp"
 #include "myWrite.hpp"
+#include <iostream>
 
 class IO{
     private:
