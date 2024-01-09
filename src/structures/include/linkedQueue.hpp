@@ -10,6 +10,8 @@
  * @class LinkedQueue
 */
 
+#include <stdexcept>
+
 template <class T>
 class LinkedQueue
 {
