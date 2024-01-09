@@ -28,7 +28,6 @@ void writeBinary(std::ofstream& out, std::string content){
     char mod = (content.size() % LOOP);
     out.write((const char*)& mod, sizeof(char));
     unsigned int temp;
-    std::cout << sizeof(int) << " " << sizeof(unsigned int) << std::endl;
     for(int i = 0; i < content.size() / LOOP; ++i){
         temp = 0;
         for(int j = 0; j < LOOP; ++j){

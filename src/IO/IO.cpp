@@ -84,12 +84,9 @@ void IO::inputting(){
         std::string name = "key_" + input;
         std::string buffer = myRead(name);
         root->fromString(buffer);
-        //std::cout << buffer << std::endl << root->toString() << std::endl;
         encoded = true;
     }
     content = myRead(input);
-    //std::cout << content << std::endl;
-    content = decodeHuffman(root, content);
     opened = true;
 }
 

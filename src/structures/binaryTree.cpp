@@ -14,6 +14,8 @@ void binaryTree::copyFrom(binaryTree* other){
     if(other->noChildren()){
         this->letter = other->getChar();
         this->occurrence = other->getOccurrence();
+        this->left = nullptr;
+        this->right = nullptr;
         return;
     }
     this->letter = other->getChar();
@@ -83,8 +85,10 @@ binaryTree* binaryTree::getRight(){
 std::string binaryTree::toString() const{
     if(this->noChildren()){
         std::string temp = "";
-        for(int i = 0; i < 8; ++i){
-            temp = ((((this->letter >> i) & 1 )== 0) ? "0" : "1") + temp;
+        unsigned char copy = this->letter;
+        for(int j = 0; j < 8; ++j){
+            temp = ((copy % 2 == 0) ? '0' : '1') + temp;
+            copy /= 2; 
         }
         return "0" + temp;
     }
