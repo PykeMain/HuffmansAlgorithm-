@@ -142,6 +142,16 @@ void IO::debug(){
 }
 
 void IO::encode(){
+    if(!opened){
+        std::cout << "There is no text in memory to encode." << std::endl;
+        return;
+    }
+
+    if(encoded){
+        std::cout << "The text is already in Huffman code." << std::endl;
+        return;
+    }
+
     std::vector<std::pair<char,std::size_t>> frequencyTable = letterCounter(content);
     std::vector<std::pair<std::string, bool>> lookUpTable(256, std::make_pair("", false));
     std::string encodedBuffer;
@@ -164,6 +174,16 @@ void IO::encode(){
 }
 
 void IO::decode(){
+    if(!opened){
+        std::cout << "There is no text in memory to decode." << std::endl;
+        return;
+    }
+    
+    if(!encoded){
+        std::cout << "The text is already decoded." << std::endl;
+        return;
+    }
+
     content = decodeHuffman(root, content);
     encoded = false;
 }

@@ -3,7 +3,6 @@
 #include <vector>
 #include <string>
 #include <cstddef>
-#include <algorithm>
 #include <iostream>
 
 typedef std::pair<char,std::size_t> myPair;

@@ -1,39 +1,38 @@
 #include "include/generateHuffmanTree.hpp"
-#include <iostream>
 
-binaryTree* pickTree(std::queue<binaryTree*>& first, std::queue<binaryTree*>& second){
-    if(first.size() == 0 && second.size() == 0){
+binaryTree* pickTree(LinkedQueue<binaryTree*>& first, LinkedQueue<binaryTree*>& second){
+    if(first.empty() && second.empty()){
         return nullptr;
     }
 
-    if(second.size() == 0 || (first.size() != 0 && first.front()->getOccurrence() < second.front()->getOccurrence())){
+    if(second.empty() || (!first.empty() && first.front()->getOccurrence() < second.front()->getOccurrence())){
         binaryTree* buffer = first.front();
-        first.pop();
+        first.dequeue();
         return buffer;
     }
 
     binaryTree* buffer = second.front();
-    second.pop();
+    second.dequeue();
     return buffer;
 }
 
 
 binaryTree* createHuffmanTree(std::vector<myPair> occurrenceTable){
-    std::queue<binaryTree*> leafs, trees;
+    LinkedQueue<binaryTree*> leafs, trees;
 
     for(myPair p : occurrenceTable){
-        leafs.push(new binaryTree(p.first, p.second));
+        leafs.enqueue(new binaryTree(p.first, p.second));
     }
 
 
     binaryTree *firstT, *secondT;
-    while(leafs.size() != 0 || trees.size() != 1){
+    while(!leafs.empty() || trees.size() != 1){
         firstT = pickTree(leafs, trees);
         secondT = pickTree(leafs, trees);
         if(secondT != nullptr && firstT != nullptr){
-            trees.push(new binaryTree('\0', firstT->getOccurrence() + secondT->getOccurrence(), firstT, secondT));
+            trees.enqueue(new binaryTree('\0', firstT->getOccurrence() + secondT->getOccurrence(), firstT, secondT));
         }else if(firstT != nullptr){
-            trees.push(firstT);
+            trees.enqueue(firstT);
         }
     }
 

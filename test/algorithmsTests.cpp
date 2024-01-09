@@ -33,3 +33,4 @@ TEST_CASE ("letterCounter testing"){
 
     CHECK(letterCounter("LLLla") == result2);
 }
+
