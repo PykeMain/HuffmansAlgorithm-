@@ -55,7 +55,8 @@ int main(){
 
     binaryTree* root  = new binaryTree();
     root->fromString(rB);
-    std::cout << root->toString() << std::endl;
+    std::cout << "is here?" << std::endl;
+    std::cout << std::boolalpha << root->getLeft()->noChildren() << std::endl;
     std::string testing = decodeHuffman(root, readingBinary);
     // myWrite("test_from_read_abra2.txt", testing, false);
 

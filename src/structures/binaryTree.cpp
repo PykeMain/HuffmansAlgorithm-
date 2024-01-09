@@ -31,14 +31,19 @@ binaryTree* binaryTree::createFromString(const std::string& str, std::size_t &cu
     }
     if(str[current] == '0'){
         binaryTree* buffer = new binaryTree(std::stoul(str.substr(current + 1, 8), 0, 2));
-        std::cout << "stoul: " << std::stoul(str.substr(current + 1, 8), 0, 2) << std::endl;
+        if(buffer->getChar() == 97){
+            std::cout << "a has children?" << !buffer->noChildren() << std::endl;
+        }
+        std::cout << "stoul: " << (char) std::stoul(str.substr(current + 1, 8), 0, 2) << std::endl;
         current+=9;
         return buffer;
-    }
+    }else{
     current++;
     binaryTree* left = createFromString( str, current);
+    std::cout << "left side" << left->getChar() << " " << left->noChildren() << std::endl;
     binaryTree* right = createFromString( str, current);
     return new binaryTree('\0', 0, left, right);
+    }
 }
 
 binaryTree::~binaryTree(){
