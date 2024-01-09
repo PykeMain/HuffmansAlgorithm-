@@ -11,16 +11,27 @@ FetchContent_MakeAvailable(DocTest)
 
 cmake_minimum_required(VERSION 3.13)
 
-add_executable(unitTests algorithmsTests.cpp 
-                         structuresTests.cpp)
+add_executable(algorithmsTests algorithmsTests.cpp)
+add_executable(structureTests structuresTests.cpp)
 
-target_sources(unitTests PUBLIC )
+target_sources(algorithmsTests PUBLIC )
 target_link_libraries(
-    unitTests
+    algorithmsTests
     PUBLIC
     doctest
     algorithms
     structures
 )
 
-add_test(NAME UnitTests COMMAND unitTests)
+add_test(NAME AlgorithmsTests COMMAND algorithmsTests)
+
+target_sources(structureTests PUBLIC )
+target_link_libraries(
+    structureTests
+    PUBLIC
+    doctest
+    algorithms
+    structures
+)
+
+add_test(NAME StructureTests COMMAND structureTests)

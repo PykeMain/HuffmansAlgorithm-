@@ -72,8 +72,10 @@ std::string byteToNumber(std::string encoded){
     for(std::size_t i = 0; i < encoded.size() / 8; ++i){
         result += std::to_string(std::stoi(encoded.substr(i*8, 8), 0, 2)) + " ";
     }
-    if(encoded.size() % 8 != 0){
-        result += std::to_string(std::stoi(encoded.substr(encoded.size() - encoded.size() % 8 - 1, encoded.size() % 8), 0, 2)) + " ";
+    if(encoded.size() % 8 != 0 && encoded.size() >= 8){
+        result += std::to_string(std::stoi(encoded.substr(encoded.size() - encoded.size() % 8 + 1, encoded.size() % 8), 0, 2));
+    }else if(encoded.size() % 8 != 0){
+        result += std::to_string(std::stoi(encoded.substr(0, encoded.size()), 0, 2));
     }
     return result;
 }

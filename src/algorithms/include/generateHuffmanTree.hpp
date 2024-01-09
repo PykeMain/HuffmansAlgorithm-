@@ -8,10 +8,10 @@
 #include "../../structures/include/binaryTree.hpp"
 #include "../../structures/include/linkedQueue.hpp"
 
-//! Chooses the smallest two trees from both queue.
+//! Chooses the smallest tree from both queue and dequeues the element.
 //! @param first A queue made from a linked list consisting entirely of leafs
 //! @param second A queue made from a linked list consisting of nonleafs
-//! @return The two trees with the 
+//! @return The smallest tree 
 binaryTree* pickTree(LinkedQueue<binaryTree*>& first, LinkedQueue<binaryTree*>& second);
 
 //! Generates a Huffman tree. By getting the 2 smallest trees it combines then into a new tree with a root their combined occurrence. It stops when there is only 1 element left in both, which is the Huffman tree.
