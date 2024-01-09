@@ -10,7 +10,6 @@ bool IO::fileExist(const std::string& fileName){
 
 IO& IO::getInstance(){
     static IO object;
-    object.saved = true;
     object.root = new binaryTree();
     return object;
 }
